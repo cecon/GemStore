@@ -1,0 +1,25 @@
+Reviews
+<div class="review" ng-repeat="review in product.reviews">
+    <blockquote>
+        <strong> {{review.stars}} Stars </strong>
+        {{review.body}} <br />
+        <cite>— {{review.author}}</cite>
+    </blockquote>
+</div>
+Submit a Review
+<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(product)">
+    <fieldset class="form-group">
+        <select class="form-control" ng-model="reviewCtrl.review.stars" ng-options="stars for stars in [5, 4, 3, 2, 1]" required>
+            <option value>Rate the Product</option>
+        </select>
+    </fieldset>
+    <fieldset class="form-group">
+        <textarea class="form-control" ng-model="reviewCtrl.review.body" placeholder="This gem is awesome!" required></textarea>
+    </fieldset>
+    <fieldset class="form-group">
+        <input class="form-control" type="email" ng-model="reviewCtrl.review.author" placeholder="someone@gemLover.com" required />
+    </fieldset>
+    <fieldset class="form-group">
+        <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+    </fieldset>
+</form>

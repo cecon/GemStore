@@ -1,0 +1,30 @@
+
+.store{
+  max-width: 500px;
+}
+.thumbnails{
+    width:184px;
+    margin:0 auto;
+    padding: 0;
+    text-align: center;
+}
+
+.thumbnails .gem-thumbnail{
+  display: inline-block;
+  width:29%;
+  margin: 5px;
+}
+
+.thumbnails .gem-thumbnail img{
+    width:100%;
+    height: auto;
+}
+
+.thumbnails .gem-thumbnail:first-child{
+    margin-left: 0;
+}
+
+.thumbnails .gem-thumbnail:last-child{
+     margin-right: 0;
+ }
+

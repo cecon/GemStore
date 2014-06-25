@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="gemStore">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>GemStore</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/app.css" rel="stylesheet">
+</head>
+<body ng-controller="StoreController as store">
+<div class="container store">
+<header>
+    <h2 class="text-center">-GemStore Application-</h2>
+</header>
+<div class="list-group">
+    <div class="list-group-item" ng-repeat="product in store.products" >
+
+        {{product.name}} <div class="pull-right">{{product.price | currency}}</div>
+        <img class="center-block" ng-src="{{product.images[0]}}" />
+
+
+        <ul class="thumbnails">
+            <li class="gem-thumbnail" ng-repeat="image in product.images">
+                <img  ng-src="{{image}}" class=""/>
+            </li>
+        </ul>
+        <product-tabs></product-tabs>
+
+    </div>
+</div>
+    </div>
+<script src="scripts/angular.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
