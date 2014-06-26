@@ -2,6 +2,34 @@
 .store{
   max-width: 500px;
 }
+
+.thumbnails{
+    width: 180px;
+    margin:0 auto;
+}
+
+.small-image{
+    width:50px;
+}
+
+.selected{
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.thumbnails li{
+    padding: 7.5px;
+}
+.thumbnails li:first-child{
+    padding-left: 0;
+}
+
+.thumbnails li:last-child{
+    padding-right: 0;
+}
+
+/*
 .thumbnails{
     width:184px;
     margin:0 auto;
@@ -20,11 +48,6 @@
     height: auto;
 }
 
-.thumbnails .gem-thumbnail:first-child{
-    margin-left: 0;
-}
 
-.thumbnails .gem-thumbnail:last-child{
-     margin-right: 0;
- }
 
+*/

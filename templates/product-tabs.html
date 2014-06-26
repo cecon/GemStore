@@ -1,8 +1,8 @@
 <section>
     <ul class="nav nav-pills">
-        <li ng-click="tabCtrl.setTab(1)" ng-class="{active: tabCtrl.currentTab == 1}"><a href="#">Description</a></li>
-        <li ng-click="tabCtrl.setTab(2)" ng-class="{active: tabCtrl.currentTab == 2}"><a href="#">Specs</a></li>
-        <li ng-click="tabCtrl.setTab(3)" ng-class="{active: tabCtrl.currentTab == 3}"><a href="#">Reviews</a></li>
+        <li ng-click="tabCtrl.setTab(1)" ng-class="{active: tabCtrl.currentTab == 1}"><a href="">Description</a></li>
+        <li ng-click="tabCtrl.setTab(2)" ng-class="{active: tabCtrl.currentTab == 2}"><a href="">Specs</a></li>
+        <li ng-click="tabCtrl.setTab(3)" ng-class="{active: tabCtrl.currentTab == 3}"><a href="">Reviews</a></li>
     </ul>
     <product-description ng-show="tabCtrl.currentTab == 1"></product-description>
     <product-reviews ng-show="tabCtrl.currentTab == 3"></product-reviews>

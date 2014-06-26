@@ -5,6 +5,21 @@ var app = angular.module('gemStore', []);
 
 app.controller('StoreController', function () {
     this.products = gems;
+    this.currentProduct = 0;
+    this.nextProduct = function(){
+        this.currentProduct += 1;
+        if (this.currentProduct == 3 )
+            this.currentProduct  = 0;
+
+        console.log(this.currentProduct);
+    }
+    this.previousProduct = function(){
+        this.currentProduct -= 1;
+        if (this.currentProduct == -1)
+            this.currentProduct = 2;
+
+        console.log(this.currentProduct);
+    }
 });
 
 app.controller('ReviewController', function () {
@@ -13,13 +28,6 @@ app.controller('ReviewController', function () {
         product.reviews.push(this.review);
         this.review = {};
     }
-});
-
-app.controller('GalleryController', function(){
-   this.currentImg = 0;
-   this.setImg = function(newValue){
-       this.currentImg = newValue || 0;
-   }
 });
 
 app.directive('productDescription', function () {
@@ -45,9 +53,29 @@ app.directive('productTabs', function(){
            this.currentTab = 1;
            this.setTab = function (newTab) {
                this.currentTab = newTab;
+           };
+           this.isCurrentTab = function(tabNumber){
+               return this.currentTab === tabNumber;
            }
        }
    }
+});
+
+app.directive('productImages', function(){
+   return{
+      restrict: 'E',
+      templateUrl: 'templates/product-images.html',
+      controllerAs: 'imgCtrl',
+      controller : function(){
+          this.index = 0;
+          this.setIndex = function(index) {
+              this.index = index;
+          };
+          this.isCurrentIndex = function(index){
+              return this.index === index;
+          }
+      }
+   };
 });
 
 var gems = [

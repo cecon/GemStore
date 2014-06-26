@@ -1,0 +1,8 @@
+<img class="center-block" ng-src="{{product.images[imgCtrl.index]}}" />
+<ul class="list-inline thumbnails">
+    <li ng-repeat="image in product.images">
+       <a href="">
+           <img class="small-image" ng-class="{selected: imgCtrl.isCurrentIndex($index)}" ng-src="{{image}}"  ng-click="imgCtrl.setIndex($index)"/>
+       </a>
+    </li>
+</ul>

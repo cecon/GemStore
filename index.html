@@ -7,27 +7,31 @@
     <link href="css/app.css" rel="stylesheet">
 </head>
 <body ng-controller="StoreController as store">
+
 <div class="container store">
-<header>
-    <h2 class="text-center">-GemStore Application-</h2>
-</header>
-<div class="list-group">
-    <div class="list-group-item" ng-repeat="product in store.products" >
-
-        {{product.name}} <div class="pull-right">{{product.price | currency}}</div>
-        <img class="center-block" ng-src="{{product.images[0]}}" />
+    <header>
+        <h2 class="text-center">-GemStore Application-</h2>
+    </header>
 
 
-        <ul class="thumbnails">
-            <li class="gem-thumbnail" ng-repeat="image in product.images">
-                <img  ng-src="{{image}}" class=""/>
-            </li>
-        </ul>
-        <product-tabs></product-tabs>
+    <div class="list-group">
+        <div class="list-group-item" ng-show="store.currentProduct === $index" ng-repeat="product in store.products" >
 
+            <!-- Product content -->
+            {{product.name}} <div class="pull-right">{{product.price | currency}}</div>
+            <product-images></product-images>
+            <product-tabs></product-tabs>
+
+        </div>
     </div>
+    <a href="" > <span class="glyphicon glyphicon-arrow-left" ng-click="store.previousProduct()"></span> <a/>
+    <a href=""> <span class="glyphicon glyphicon-arrow-right pull-right" ng-click="store.nextProduct()"></span> </a>
+
 </div>
-    </div>
+
+
+
+
 <script src="scripts/angular.min.js"></script>
 <script src="app.js"></script>
 </body>
