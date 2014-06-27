@@ -10,13 +10,19 @@
 
 <div class="container store">
     <header>
-        <h2 class="text-center">-GemStore Application-</h2>
+        <h2 class="text-center">GemStore Application</h2>
     </header>
 
+    <button class="btn btn-default" ng-click="store.previousProduct()">
+        <span class="glyphicon glyphicon-arrow-left " ></span>
+    </button>
+
+    <button class="btn btn-default pull-right" ng-click="store.nextProduct()">
+        <span class="glyphicon glyphicon-arrow-right" ></span>
+    </button>
 
     <div class="list-group">
         <div class="list-group-item" ng-show="store.currentProduct === $index" ng-repeat="product in store.products" >
-
             <!-- Product content -->
             {{product.name}} <div class="pull-right">{{product.price | currency}}</div>
             <product-images></product-images>
@@ -24,15 +30,14 @@
 
         </div>
     </div>
-    <a href="" > <span class="glyphicon glyphicon-arrow-left" ng-click="store.previousProduct()"></span> <a/>
-    <a href=""> <span class="glyphicon glyphicon-arrow-right pull-right" ng-click="store.nextProduct()"></span> </a>
+
 
 </div>
 
 
 
 
-<script src="scripts/angular.min.js"></script>
+<script src="js/angular.min.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
