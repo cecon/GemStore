@@ -1,160 +1,41 @@
 /**
  * Created by Lucas on 25/06/2014.
  */
-var app = angular.module('gemStore', []);
 
-app.controller('StoreController', function () {
-    this.products = gems;
-    this.currentProduct = 0;
-    this.nextProduct = function(){
-        this.currentProduct += 1;
-        if (this.currentProduct == 3 )
-            this.currentProduct  = 0;
+(function(){
+    var app = angular.module('gemStore', ['store-directives']);
 
-        console.log(this.currentProduct);
-    }
-    this.previousProduct = function(){
-        this.currentProduct -= 1;
-        if (this.currentProduct == -1)
-            this.currentProduct = 2;
+    app.controller('StoreController', ['$http', function ($http) {
+        var store = this;
+        this.products = [];
+        this.currentProduct = 0;
 
-        console.log(this.currentProduct);
-    }
-});
+        $http.get('data/products.json').success(function(data){
+           store.products = data;
+        });
 
-app.controller('ReviewController', function () {
-    this.review = {};
-    this.addReview = function (product) {
-        product.reviews.push(this.review);
+        // Just for change the between products.
+        this.nextProduct = function(){
+            this.currentProduct += 1;
+            if (this.currentProduct == 3 )
+                this.currentProduct  = 0;
+
+            console.log(this.currentProduct);
+        }
+        this.previousProduct = function(){
+            this.currentProduct -= 1;
+            if (this.currentProduct == -1)
+                this.currentProduct = 2;
+
+            console.log(this.currentProduct);
+        }
+    }]);
+
+    app.controller('ReviewController', function () {
         this.review = {};
-    }
-});
-
-app.directive('productDescription', function () {
-    return {
-        restrict: 'E',
-        templateUrl: "templates/product-description.html"
-    };
-});
-
-app.directive('productSpecs', function(){
-   return{
-       restrict: 'E',
-       templateUrl: "templates/product-specs.html"
-   }
-});
-
-app.directive('productReviews',function(){
-    return{
-        restrict: 'E',
-        templateUrl: "templates/product-reviews.html"
-    }
-});
-
-app.directive('productTabs', function(){
-   return {
-       restrict: 'E',
-       templateUrl: 'templates/product-tabs.html',
-       controllerAs: 'tabCtrl',
-       controller: function(){
-           this.currentTab = 1;
-           this.setTab = function (newTab) {
-               this.currentTab = newTab;
-           };
-           this.isCurrentTab = function(tabNumber){
-               return this.currentTab === tabNumber;
-           }
-       }
-   }
-});
-
-app.directive('productImages', function(){
-   return{
-      restrict: 'E',
-      templateUrl: 'templates/product-images.html',
-      controllerAs: 'imgCtrl',
-      controller : function(){
-          this.index = 0;
-          this.setIndex = function(index) {
-              this.index = index;
-          };
-          this.isCurrentIndex = function(index){
-              return this.index === index;
-          }
-      }
-   };
-});
-
-var gems = [
-    {
-        name: 'Azurite',
-        description: "Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.",
-        shine: 8,
-        price: 110.50,
-        rarity: 7,
-        color: '#CCC',
-        faces: 14,
-        images: [
-            "images/gem-02.gif",
-            "images/gem-05.gif",
-            "images/gem-09.gif"
-        ],
-        reviews: [{
-            stars: 5,
-            body: "I love this gem!",
-            author: "joe@example.org"
-        }, {
-            stars: 1,
-            body: "This gem sucks.",
-            author: "tim@example.org"
-        }]
-    }, {
-        name: 'Bloodstone',
-        description: "Origin of the Bloodstone is unknown, hence its low value. It has a very high shine and 12 sides, however.",
-        shine: 9,
-        price: 22.90,
-        rarity: 6,
-        color: '#EEE',
-        faces: 12,
-        images: [
-            "images/gem-01.gif",
-            "images/gem-03.gif",
-            "images/gem-04.gif"
-        ],
-        reviews: [{
-            stars: 3,
-            body: "I think this gem was just OK, could honestly use more shine, IMO.",
-            author: "JimmyDean@example.org"
-        }, {
-            stars: 4,
-            body: "Any gem with 12 faces is for me!",
-            author: "gemsRock@example.org"
-        }]
-    }, {
-        name: 'Zircon',
-        description: "Zircon is our most coveted and sought after gem. You will pay much to be the proud owner of this gorgeous and high shine gem.",
-        shine: 70,
-        price: 1100,
-        rarity: 2,
-        color: '#000',
-        faces: 6,
-        images: [
-            "images/gem-06.gif",
-            "images/gem-07.gif",
-            "images/gem-08.gif"
-        ],
-        reviews: [{
-            stars: 1,
-            body: "This gem is WAY too expensive for its rarity value.",
-            author: "turtleguyy@example.org"
-        }, {
-            stars: 1,
-            body: "BBW: High Shine != High Quality.",
-            author: "LouisW407@example.org"
-        }, {
-            stars: 1,
-            body: "Don't waste your rubles!",
-            author: "nat@example.org"
-        }]
-    }
-];
+        this.addReview = function (product) {
+            product.reviews.push(this.review);
+            this.review = {};
+        }
+    });
+})();
